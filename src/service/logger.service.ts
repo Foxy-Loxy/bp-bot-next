@@ -22,10 +22,10 @@ export class LoggerService implements LoggerServiceContract {
         this.winston = winston.createLogger({
             level: 'debug',
             format: winston.format.combine(
-                winston.format.json(),
                 winston.format.timestamp({
                     format: 'YYYY-MM-DD HH:mm:ss'
                 }),
+                winston.format.json(),
                 winston.format.colorize({ all: true }),
             ),
             defaultMeta: {

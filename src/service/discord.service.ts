@@ -7,6 +7,8 @@ import { CommandContract } from '../contract/common/command';
 import { DiscordConfigurationContract } from '../contract/config/discord.contract';
 import { Logging } from 'sequelize';
 import { LoggerServiceContract } from '../contract/service/config.contract';
+import { ApplicationCommandOptionType, ApplicationCommandType } from 'discord-api-types';
+import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums';
 
 @injectable()
 export class DiscordService implements DiscordServiceContract{
@@ -39,15 +41,16 @@ export class DiscordService implements DiscordServiceContract{
             for (const commandKey in commandIdentifiers) {
                 const commandObject = container.get<CommandContract>(commandIdentifiers[commandKey]);
 
-                const { command, description } = commandObject;
+                const { command, description, options } = commandObject;
 
-                this.logger.info(`Registering command ${command.toUpperCase()} with description: ${description}`);
+                this.logger.info(`Registering command ${command.toUpperCase()} (Params: ${options.length !== 0 ? options.map(e => `${e.name} - ${e.description}`).join(', ') : 'NONE'}) with description: ${description}`);
 
                 this.commandDictionary.set(command, commandIdentifiers[commandKey]);
 
                 await commands?.create({
                     name: command,
                     description,
+                    options,
                 });
 
                 this.logger.info(`Successfully registered command ${command.toUpperCase()}`);
