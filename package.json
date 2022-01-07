@@ -1,0 +1,28 @@
+{
+  "name": "bp-bot-next",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node -r dotenv/config ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^0.11.0",
+    "@discordjs/rest": "^0.2.0-canary.0",
+    "@types/better-sqlite3": "^7.4.2",
+    "better-sqlite3": "^7.4.6",
+    "discord-api-types": "^0.26.1",
+    "discord.js": "^13.5.0",
+    "dotenv": "^10.0.0",
+    "inversify": "^6.0.1",
+    "lodash": "^4.17.21",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.12.5",
+    "sequelize-typescript": "^2.1.2",
+    "sqlite3": "^4.2.0",
+    "winston": "^3.3.3"
+  }
+}
